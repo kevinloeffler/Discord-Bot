@@ -1,6 +1,7 @@
 import os
-import discord
 import random
+import discord
+from discord.ext import commands
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -10,24 +11,30 @@ GUILD = os.getenv('GUILD_NAME')
 client = discord.Client()
 
 ### Set up:
-globalDelimiter = '.'
+bot = commands.Bot(command_prefix='.')
 
 ### Messages
-def commands(input):
+def commandsCMD(input):
+    if input == '.start':
+        pass
+    elif input == '.join':
+        pass
+    elif input == '.sus':
+        pass
+
+
+@bot.event
+async def on_ready():
+    guild = discord.utils.get(bot.guilds)
+    print("Bot " + bot.user.name + " connected to " + guild.name)
+    print("With the ID: " + str(bot.user.id) + "\n")
+
+@bot.command()
+async def test(ctx, arg):
+    await ctx.send(arg)
+
+@bot.event
+async def on_message(message):
     pass
 
-
-@client.event
-async def on_ready():
-    print(f'{client.user} has connected to Discord!\n')
-
-
-@client.event
-async def on_message(message):
-    # Important check: prevents recursion
-    if message.author != client.user:
-        if message.content[0] == globalDelimiter:
-            await message.channel.send('command recived')
-            print('response sent')
-
-client.run(TOKEN)
+bot.run(TOKEN)
