@@ -20,16 +20,12 @@ async def on_ready():
     print("Bot " + bot.user.name + " connected to " + guild.name)
     print("With the ID: " + str(bot.user.id) + "\n")
 
-#@bot.command(name = 'run')
-#async def run(ctx):
-#    await ctx.send('running')
-
 @bot.command()
 async def test(ctx):
     await ctx.send('testing')
 
 @bot.command(name = 'admin')
-@commands.has_role('admin')
+@commands.has_role('Admin')
 async def admin(ctx):
     await ctx.send('allowed')
 
