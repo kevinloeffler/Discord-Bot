@@ -17,8 +17,13 @@ async def on_ready():
 
 # Join notification
 @bot.event
-async def on_join(member):
+async def on_member_join(member):
     print("{m} has joined".format(m = member))
+
+# Left notification
+@bot.event
+async def on_member_remove(member):
+    print("{m} has left".format(m = member))
 
 # Command
 @bot.command()
