@@ -57,3 +57,9 @@ async def info(ctx):
     print(ctx.channel)
     await ctx.send(ctx.guild)
     print(ctx.guild)
+
+# Command not found
+@bot.command()
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send("Invalid Command. Type .h for a list of all commands")
