@@ -25,7 +25,7 @@ async def test(ctx):
     await ctx.send('testing')
 
 @bot.command(name = 'admin')
-@commands.has_role('Admin')
+@commands.has_role('admin')
 async def admin(ctx):
     await ctx.send('allowed')
 
