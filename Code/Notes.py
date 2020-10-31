@@ -37,3 +37,13 @@ async def on_message(message):
 @bot.event
 async def on_message(message):
     print("{aut}: {mes}".format(aut = message.author, mes = message.content))
+
+# Join notification
+@bot.event
+async def on_member_join(member):
+    print("{m} has joined".format(m = member))
+
+# Left notification
+@bot.event
+async def on_member_remove(member):
+    print("{m} has left".format(m = member))
