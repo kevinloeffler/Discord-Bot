@@ -24,7 +24,7 @@ if message.content == '99!':
     response = '99!'
     await message.channel.send(response)
 
-# Sending an Invite
+# Sending an embed
 @client.event
 async def on_message(message):
     if message == "version":
@@ -32,3 +32,8 @@ async def on_message(message):
         myEmbed.add_field(name = "Version Code:", value = "v1.0.0", inline = false)
         myEmbed.set_footer(text = "Sample Footer")
         await guild.send(embed = myEmbed)
+
+# Message Logger
+@bot.event
+async def on_message(message):
+    print("{aut}: {mes}".format(aut = message.author, mes = message.content))
