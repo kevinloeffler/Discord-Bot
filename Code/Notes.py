@@ -23,3 +23,12 @@ print(
 if message.content == '99!':
     response = '99!'
     await message.channel.send(response)
+
+# Sending an Invite
+@client.event
+async def on_message(message):
+    if message == "version":
+        myEmbed = discord.Embed(title = 'Current Version', description = "Version 1.0", color = "0x00ff00")
+        myEmbed.add_field(name = "Version Code:", value = "v1.0.0", inline = false)
+        myEmbed.set_footer(text = "Sample Footer")
+        await guild.send(embed = myEmbed)
