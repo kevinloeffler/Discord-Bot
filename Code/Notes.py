@@ -47,3 +47,13 @@ async def on_member_join(member):
 @bot.event
 async def on_member_remove(member):
     print("{m} has left".format(m = member))
+
+# Info command
+@bot.command()
+async def info(ctx):
+    await ctx.send(ctx.author)
+    print(ctx.author)
+    await ctx.send(ctx.channel)
+    print(ctx.channel)
+    await ctx.send(ctx.guild)
+    print(ctx.guild)
