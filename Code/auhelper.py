@@ -8,14 +8,21 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('GUILD_NAME')
 
-client = commands.Bot(command_prefix = ".")
+bot = commands.Bot(command_prefix = ".")
 
+# On Connection
 @client.event
 async def on_ready():
-    print("Bot is Ready")
+    print("Bot is ready")
 
-@client.event
-async def on_message(message):
-    print("{aut}: {mes}".format(aut = message.author, mes = message.content))
+# Message Logger
+# @bot.event
+# async def on_message(message):
+#    print("{aut}: {mes}".format(aut = message.author, mes = message.content))
 
-client.run(TOKEN)
+# Command
+@bot.command()
+async def ping(ctx):
+    await ctx.send("Pong")
+
+bot.run(TOKEN)
