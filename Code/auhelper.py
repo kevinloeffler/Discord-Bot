@@ -11,14 +11,14 @@ GUILD = os.getenv('GUILD_NAME')
 bot = commands.Bot(command_prefix = ".")
 
 # On Connection
-@client.event
+@bot.event
 async def on_ready():
     print("Bot is ready")
 
-# Message Logger
-# @bot.event
-# async def on_message(message):
-#    print("{aut}: {mes}".format(aut = message.author, mes = message.content))
+# Join notification
+@bot.event
+async def on_join(member):
+    print("{m} has joined".format(m = member))
 
 # Command
 @bot.command()
