@@ -11,12 +11,15 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('GUILD_NAME')
 
 bot = commands.Bot(command_prefix = ".")
+admin = commands.Bot(command_prefix = "..")
 
 # On Connection
 @bot.event
 async def on_ready():
     await bot.change_presence(status = discord.Status.online, activity = discord.Game("Among Us"))
     print("Bot is ready")
+
+### Utility Commands
 
 # Ping
 @bot.command()
@@ -40,6 +43,33 @@ async def about(ctx):
     aboutEmbed.add_field(name = "Source Code", value = Content.Help.source, inline = False)
     aboutEmbed.set_footer(text = "Developed by Kevin Loeffler, distributed under the MIT License")
     await ctx.send(embed = aboutEmbed)
+
+### Game Commands
+
+# Join
+
+# Leave
+
+# Pick Color
+
+# Change Name
+
+
+### Admin Commands
+
+# Start Game
+
+# End Game
+
+# Change Player Color
+
+# Remove Player
+
+# Random Colors
+
+### Game Enviorenment
+
+
 
 # Error Handling
 # @bot.event
