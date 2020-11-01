@@ -7,7 +7,7 @@ Start by joining a game wit '.join'. Now you see a list of all available colors.
 .about      show information about the bot
 .ping       view the bots current ping in ms
 ––––––
-..h         for adming commands
+..h         for admin commands
 ```"""
 
     description = "```Developed by Kevin Loeffler```"
