@@ -4,6 +4,8 @@ import discord
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 
+import Content
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('GUILD_NAME')
@@ -21,12 +23,28 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send(round((bot.latency * 1000), 2))
 
+# Help
+@bot.command()
+async def h(ctx):
+    helpEmbed = discord.Embed()
+    helpEmbed.add_field(name = "How to use this bot", value = Content.Help.howToPlay, inline = False)
+    helpEmbed.add_field(name = "Commands", value = Content.Help.commands, inline = False)
+    await ctx.send(embed = helpEmbed)
+
+# About
+@bot.command()
+async def about(ctx):
+    aboutEmbed = discord.Embed(title = 'Current Version', description = "Version 1.0")
+    aboutEmbed.add_field(name = "Version Code:", value = "v1.0.0", inline = False)
+    aboutEmbed.set_footer(text = "Sample Footer")
+    await ctx.send(embed = aboutEmbed)
+
 # Error Handling
-@bot.event
-async def on_command_error(ctx, error):
-    if isinstance(error, commands.CommandNotFound):
-        await ctx.send("Invalid Command: Type .h for a list of all commands")
-    elif isinstance(error, commands.MissingRole):
-        await ctx.send("Missing Role: You have to be an Admin to use '..' commands")
+# @bot.event
+# async def on_command_error(ctx, error):
+#    if isinstance(error, commands.CommandNotFound):
+#        await ctx.send("Invalid Command: Type .h for a list of all commands")
+#    elif isinstance(error, commands.MissingRole):
+#        await ctx.send("Missing Role: You have to be an Admin to use '..' commands")
 
 bot.run(TOKEN)
