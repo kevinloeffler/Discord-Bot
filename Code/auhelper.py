@@ -21,6 +21,7 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send(round((bot.latency * 1000), 2))
 
+# Error Handling
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
