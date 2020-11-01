@@ -1,7 +1,7 @@
 import os
 import random
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -20,5 +20,12 @@ async def on_ready():
 @bot.command()
 async def ping(ctx):
     await ctx.send(round((bot.latency * 1000), 2))
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send("Invalid Command: Type .h for a list of all commands")
+    elif isinstance(error, commands.MissingRole):
+        await ctx.send("Missing Role: You have to be an Admin to use '..' commands")
 
 bot.run(TOKEN)
