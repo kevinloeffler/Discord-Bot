@@ -68,6 +68,19 @@ async def leave(ctx):
         await ctx.send("You left the game.")
 
 # Pick Color
+@bot.command()
+async def pickColor(ctx):
+    message = await ctx.send("Pick a color:")
+    activeGame.colorMessage = message
+    for color in activeGame.colors:
+        if color.status is False:
+            emoji = bot.get_emoji(color.eid)
+            await message.add_reaction(emoji)
+
+@bot.event
+async def on_reaction_add(reaction, user):
+    if reaction.message == activeGame.colorMessage:
+        await reaction.message.channel.send(str(user) + "reacted")
 
 # Change Name
 
@@ -104,11 +117,34 @@ class Player:
         self.id = None
         self.color = None
 
+class Color:
+    def __init__(self, name, value, eid):
+        self.name = name
+        self.value = value
+        self.eid = eid
+        self.status = False
+
 class Game:
     id = 111
     # Create Empty Players
     player1, player2, player3, player4, player5, player6, player7, player8, player9, player10 = Player(), Player(), Player(), Player(), Player(), Player(), Player(), Player(), Player(), Player()
     players = [player1, player2, player3, player4, player5, player6, player7, player8, player9, player10]
+    colorMessage = None
+
+    # Colors
+    green = Color("Green", 0x127F2D, 772492810683023360)
+    lime = Color("Lime", 0x52ED39, 772492810837295124)
+    cyan = Color("Cyan", 0x38FEDC, 772492810623516702)
+    blue = Color("Blue", 0x122ECF, 772492810615783484)
+    purple = Color("Purple", 0x6B30BC, 772492810666246144)
+    pink = Color("Pink", 0xEB54B9, 772492810422452235)
+    red = Color("Red", 0xC51111, 772492810653794354)
+    orange = Color("Orange", 0xF07D0D, 772492810850402324)
+    yellow = Color("Yellow", 0xF3F457, 772492810347216897)
+    brown = Color("Brown", 0x72491E, 772492810614997002)
+    black = Color("Black", 0x181818, 772492810263855105)
+    white = Color("White", 0xD8E1EE, 772492810782900224)
+    colors = [green, lime, cyan, blue, purple, pink, red, orange, yellow, brown, black, white]
 
     def addPlayer(ctx, pid):
         counter = 0
