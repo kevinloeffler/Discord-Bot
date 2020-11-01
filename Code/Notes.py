@@ -63,3 +63,6 @@ async def info(ctx):
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send("Invalid Command. Type .h for a list of all commands")
+
+# Role Check
+@commands.has_role("Admin")
