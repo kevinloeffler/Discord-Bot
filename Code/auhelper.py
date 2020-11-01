@@ -34,9 +34,11 @@ async def h(ctx):
 # About
 @bot.command()
 async def about(ctx):
-    aboutEmbed = discord.Embed(title = 'Current Version', description = "Version 1.0")
-    aboutEmbed.add_field(name = "Version Code:", value = "v1.0.0", inline = False)
-    aboutEmbed.set_footer(text = "Sample Footer")
+    aboutEmbed = discord.Embed(title = 'Among Us Helper')
+    aboutEmbed.add_field(name = "Version", value = Content.Help.version, inline = True)
+    aboutEmbed.add_field(name = "Release", value = Content.Help.release, inline = True)
+    aboutEmbed.add_field(name = "Source Code", value = Content.Help.source, inline = False)
+    aboutEmbed.set_footer(text = "Developed by Kevin Loeffler, distributed under the MIT License")
     await ctx.send(embed = aboutEmbed)
 
 # Error Handling
