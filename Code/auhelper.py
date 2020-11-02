@@ -149,11 +149,14 @@ async def playerInfo(ctx, pid):
 async def playerInfoError(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send("ERROR: Choose a number between 1 and 10 as argument.")
+
 # Change Player Color
 
 # Remove Player
 
-# Random Colors
+### Fun
+
+# Whos sus?
 
 ### Game Enviorenment
 
