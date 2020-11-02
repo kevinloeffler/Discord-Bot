@@ -16,14 +16,14 @@ bot = commands.Bot(command_prefix = ".")
 @bot.event
 async def on_ready():
     await bot.change_presence(status = discord.Status.online, activity = discord.Game("Among Us"))
-    print("Bot is ready")
+    print("Bot is ready to Rock and Roll!")
 
 ### Utility Commands
 
 # Ping
-@bot.command()
+@bot.command(aliases = ["alive"])
 async def ping(ctx):
-    await ctx.send(round((bot.latency * 1000), 2))
+    await ctx.send("Im alive, well and have a ping of " + str(round((bot.latency * 1000))) + "ms.")
 
 # Help
 @bot.command()
