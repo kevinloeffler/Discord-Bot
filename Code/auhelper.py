@@ -94,10 +94,25 @@ async def on_reaction_add(reaction, user):
 # Change Name
 @bot.command()
 async def test(ctx):
-    m = ctx.author.id
+    m = ctx.author.color
     await ctx.send(m)
 
 ### Admin Commands
+
+# Create Roles
+@bot.command()
+async def createRoles(ctx):
+    for c in activeGame.colors:
+        await ctx.guild.create_role(name = c.name, color = discord.Colour(c.value))
+    await ctx.send("Roles Created.")
+
+# Reset Roles
+@bot.command()
+async def resetRoles(ctx):
+    for c in activeGame.colors:
+        role = discord.utils.get(ctx.message.guild.roles, name=c.name)
+        await role.delete()
+    await ctx.send("Roles have been yeeted!")
 
 # Start Game
 
@@ -154,7 +169,7 @@ class Player:
         self.id = None
         self.color = None
 
-class Color:
+class GameColor:
     def __init__(self, name, value, eid):
         self.name = name
         self.value = value
@@ -171,18 +186,18 @@ class Game:
     colorUser = None
 
     # Colors
-    green = Color("Green", 0x127F2D, 772492810683023360)
-    lime = Color("Lime", 0x52ED39, 772492810837295124)
-    cyan = Color("Cyan", 0x38FEDC, 772492810623516702)
-    blue = Color("Blue", 0x122ECF, 772492810615783484)
-    purple = Color("Purple", 0x6B30BC, 772492810666246144)
-    pink = Color("Pink", 0xEB54B9, 772492810422452235)
-    red = Color("Red", 0xC51111, 772492810653794354)
-    orange = Color("Orange", 0xF07D0D, 772492810850402324)
-    yellow = Color("Yellow", 0xF3F457, 772492810347216897)
-    brown = Color("Brown", 0x72491E, 772492810614997002)
-    black = Color("Black", 0x181818, 772492810263855105)
-    white = Color("White", 0xD8E1EE, 772492810782900224)
+    green = GameColor("Green", 0x127F2D, 772492810683023360)
+    lime = GameColor("Lime", 0x52ED39, 772492810837295124)
+    cyan = GameColor("Cyan", 0x38FEDC, 772492810623516702)
+    blue = GameColor("Blue", 0x122ECF, 772492810615783484)
+    purple = GameColor("Purple", 0x6B30BC, 772492810666246144)
+    pink = GameColor("Pink", 0xEB54B9, 772492810422452235)
+    red = GameColor("Red", 0xC51111, 772492810653794354)
+    orange = GameColor("Orange", 0xF07D0D, 772492810850402324)
+    yellow = GameColor("Yellow", 0xF3F457, 772492810347216897)
+    brown = GameColor("Brown", 0x72491E, 772492810614997002)
+    black = GameColor("Black", 0x181818, 772492810263855105)
+    white = GameColor("White", 0xD8E1EE, 772492810782900224)
     colors = [green, lime, cyan, blue, purple, pink, red, orange, yellow, brown, black, white]
 
     def addPlayer(ctx, pid):
