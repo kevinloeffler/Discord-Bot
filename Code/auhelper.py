@@ -53,9 +53,9 @@ async def join(ctx):
     if responseCode == 0:
         await ctx.send("No more player instances available.")
     elif responseCode == -1:
-        await ctx.send("You have already joined the game.")
+        await ctx.send("You have already joined the game. Don't be greedy, leave some space for the rest.")
     else:
-        await ctx.send("Joined as Player " + str(responseCode) + ".")
+        await ctx.send("Joined as Player " + str(responseCode) + ". You can pick a color with '.pickColor'.")
 
 # Leave
 @bot.command()
@@ -63,9 +63,9 @@ async def leave(ctx):
     pid = ctx.author.id
     responseCode = activeGame.removePlayer(pid)
     if responseCode == 0:
-        await ctx.send("You have not joined a game.")
+        await ctx.send("You have not joined a game dummy.")
     else:
-        await ctx.send("You left the game.")
+        await ctx.send("You left the game. Sad to see you leave... ")
 
 # Pick Color
 @bot.command()
