@@ -1,13 +1,23 @@
 class Help:
     howToPlay = """```
-Start by joining a game wit '.join'. Now you see a list of all available colors. Pick one with a reaction. It's resommended that you change your username to your first name making it easier for people to recognice you. Do that by typing '.name <yourname>'.
+Start by joining a game with '.join'. Next, select a color via '.pickColor'. I also resommend that you change your username to your first name to make it easier for people to recognice you. You can do that by typing '.name <yourname>'.
 ```"""
     commands = """```
-.h          show this help menu
-.about      show information about the bot
-.ping       view the bots current ping in ms
-––––––
-..h         for admin commands
+.join           Join a game (^o^)
+.leave          Leave the game (._.)
+.pickColor      Select a color
+.freeColors     See a list with all available colors.
+.ping           Find out if I'm still alive (・.・)
+.about          Tells you a little bit about me and my creator
+.help           Show this help menu, kind of selfexplanetory...
+–––––––––––––––
+ADMIN COMMANDS
+–––––––––––––––
+.createRoles    Create all 12 color roles
+.resetRoles     Yeet the color roles
+.resetGame      Reset the game
+.gameInfo       Show the state of the active game
+.playerInfo [n] Show the infos of a particular player
 ```"""
 
     description = "```Developed by Kevin Loeffler```"
