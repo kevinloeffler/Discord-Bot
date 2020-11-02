@@ -11,6 +11,6 @@ Start by joining a game wit '.join'. Now you see a list of all available colors.
 ```"""
 
     description = "```Developed by Kevin Loeffler```"
-    version = "```0.1.1```"
+    version = "```0.1.2```"
     release = "```Beta```"
     source = "```https://github.com/kevinloeffler/Discord-Bot```"
