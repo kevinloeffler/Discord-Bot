@@ -122,6 +122,16 @@ async def resetGame(ctx):
     await ctx.send("Game Reset. All data has been yeeted into oblivion...")
 
 # Game Info
+@bot.command()
+async def gameInfo(ctx):
+    playerCounter = 0
+    for player in activeGame.players:
+        if player.status:
+            playerCounter += 1
+    if playerCounter == 1:
+        await ctx.send("There is 1 player in the lobby.")
+    else:
+        await ctx.send(f"There are {playerCounter} players in the lobby.")
 
 # Player Info
 @bot.command()
