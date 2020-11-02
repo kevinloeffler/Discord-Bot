@@ -114,9 +114,12 @@ async def resetRoles(ctx):
         await role.delete()
     await ctx.send("Roles have been yeeted!")
 
-# Start Game
-
-# End Game
+# Restart Game
+@bot.command()
+async def resetGame(ctx):
+    for player in activeGame.players:
+        player.reset()
+    await ctx.send("Game Reset. All data has been yeeted into oblivion...")
 
 # Game Info
 
