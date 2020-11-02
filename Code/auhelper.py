@@ -10,7 +10,7 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('GUILD_NAME')
 
-bot = commands.Bot(command_prefix = ".")
+bot = commands.Bot(command_prefix = ".", help_command = None)
 
 # On Connection
 @bot.event
@@ -26,8 +26,8 @@ async def ping(ctx):
     await ctx.send("Im alive, well and have a ping of " + str(round((bot.latency * 1000))) + "ms.")
 
 # Help
-@bot.command()
-async def h(ctx):
+@bot.command(aliases = ["h", "hilfe"])
+async def help(ctx):
     helpEmbed = discord.Embed()
     helpEmbed.add_field(name = "How to use this bot", value = Content.Help.howToPlay, inline = False)
     helpEmbed.add_field(name = "Commands", value = Content.Help.commands, inline = False)
