@@ -91,6 +91,8 @@ async def on_reaction_add(reaction, user):
                         p.pickColor(c)
                         break
 
+# Free Colors
+
 # Change Name
 @bot.command()
 async def test(ctx):

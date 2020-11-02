@@ -66,3 +66,14 @@ async def on_command_error(ctx, error):
 
 # Role Check
 @commands.has_role("Admin")
+pass
+
+@bot.command()
+async def text(ctx):
+    msg = await ctx.channel.send(' the text ')
+    await msg.add_reaction('👍')
+
+@client.event
+async def on_reaction_add(reaction, user):
+    if reaction.emoji('👍'):
+        await reaction.channel.send('Test')
