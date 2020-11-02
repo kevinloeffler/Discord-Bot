@@ -48,7 +48,7 @@ async def about(ctx):
 # Join
 @bot.command()
 async def join(ctx):
-    pid = str(ctx.author)
+    pid = ctx.author.id
     responseCode = activeGame.addPlayer(pid)
     if responseCode == 0:
         await ctx.send("No more player instances available.")
@@ -60,7 +60,7 @@ async def join(ctx):
 # Leave
 @bot.command()
 async def leave(ctx):
-    pid = str(ctx.author)
+    pid = ctx.author.id
     responseCode = activeGame.removePlayer(pid)
     if responseCode == 0:
         await ctx.send("You have not joined a game.")
@@ -71,6 +71,7 @@ async def leave(ctx):
 @bot.command()
 async def pickColor(ctx):
     message = await ctx.send("Pick a color:")
+    activeGame.colorUser = ctx.author
     activeGame.colorMessage = message
     for color in activeGame.colors:
         if color.status is False:
@@ -79,11 +80,22 @@ async def pickColor(ctx):
 
 @bot.event
 async def on_reaction_add(reaction, user):
-    if reaction.message == activeGame.colorMessage:
-        await reaction.message.channel.send(str(user) + "reacted")
+    if reaction.message == activeGame.colorMessage and user == activeGame.colorUser:
+        await activeGame.colorMessage.delete()
+        await reaction.message.channel.send(str(user) + " picked  " + str(reaction))
+        pickedColor = str(reaction)[8:-1]
+        for c in activeGame.colors:
+            if c.eid == int(pickedColor):
+                for p in activeGame.players:
+                    if p.id == user.id:
+                        p.pickColor(c)
+                        break
 
 # Change Name
-
+@bot.command()
+async def test(ctx):
+    m = ctx.author.id
+    await ctx.send(m)
 
 ### Admin Commands
 
@@ -94,7 +106,19 @@ async def on_reaction_add(reaction, user):
 # Game Info
 
 # Player Info
+@bot.command()
+async def playerInfo(ctx, pid):
+    validArguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    if pid in validArguments:
+        player = activeGame.players[(int(pid) - 1)]
+        await ctx.send(player.info())
+    else:
+        await ctx.send("ERROR: Choose a number between 1 and 10 as argument.")
 
+@playerInfo.error
+async def playerInfoError(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("ERROR: Choose a number between 1 and 10 as argument.")
 # Change Player Color
 
 # Remove Player
@@ -111,6 +135,19 @@ class Player:
 
     def pickColor(self, c):
         self.color = c
+
+    def info(self):
+        output = ""
+        if self.status:
+            output += "Status: Active\n"
+            output += f"Player ID: {self.id}\n"
+        else:
+            output += "Status: Free\n"
+        if self.color is None:
+            output += "No Color Selected"
+        else:
+            output += f"Color: {self.color.name}"
+        return output
 
     def reset(self):
         self.status = False
@@ -129,7 +166,9 @@ class Game:
     # Create Empty Players
     player1, player2, player3, player4, player5, player6, player7, player8, player9, player10 = Player(), Player(), Player(), Player(), Player(), Player(), Player(), Player(), Player(), Player()
     players = [player1, player2, player3, player4, player5, player6, player7, player8, player9, player10]
+
     colorMessage = None
+    colorUser = None
 
     # Colors
     green = Color("Green", 0x127F2D, 772492810683023360)
