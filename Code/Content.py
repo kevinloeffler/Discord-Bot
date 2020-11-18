@@ -8,8 +8,8 @@ Start by joining a game with '.join'. Next, select a color via '.pickColor'. I a
 .pickColor      Select a color
 .freeColors     See a list with all available colors.
 .ping           Find out if I'm still alive (・.・)
-.about          Tells you a little bit about me and my creator
-.help           Show this help menu, kind of selfexplanetory...
+.about          Tells you a little bit about me
+.help           Show this help menu
 –––––––––––––––
 ADMIN COMMANDS
 –––––––––––––––
