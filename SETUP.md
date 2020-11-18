@@ -1,0 +1,31 @@
+# Quick Start
+
+### Discord
+Download Discord:
+https://discord.com/download
+Become a Discord Developer:
+https://discord.com/login?redirect_to=%2Fdevelopers%2Fapplications
+In the Dev Portal create an Application and a Bot. You will need the API Key later.
+Setup a Test Server (Guild).
+
+### Create Virtual Environment (venv)
+This step is not necessary but recommended. If you don't know hot set a Virtual Environment up, this article should help you:
+https://www.dabapps.com/blog/introduction-to-pip-and-virtualenv-python/
+
+### Install Python Packages
+You need to install two Python Packages:
+1.  pip install discord.py
+    conda install -c cjmartian discord.py
+
+2.  pip install python-dotenv
+    conda install -c conda-forge python-dotenv
+
+For the async library to work you need at least Python 3.7
+
+### Add Enviorenment Variables
+create .env file with:
+DISCORD_TOKEN="TokenHere"  <- From Developer Portal
+GUILD_NAME="YourDevServer"  <- Name of your Test Server
+
+## Security
+Make sure to keep the API Key secure. Use a .gitignore file to exclude your .env file from commits and do not use the Key anywhere in the code.
