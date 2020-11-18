@@ -70,9 +70,31 @@ async def leave(ctx):
 # Pick Color
 @bot.command()
 async def pickColor(ctx):
+    # Check if caller is a player
+    isPlayer = False
+    for player in activeGame.players:
+        if ctx.author.id == player.id:
+            isPlayer = True
+    if isPlayer == False:
+        await ctx.send("You need to join a game before you can pick a color.")
+        return 1
+
+    # Run Method
     message = await ctx.send("Pick a color:")
+    # Set class variables for the reaction event
     activeGame.colorUser = ctx.author
     activeGame.colorMessage = message
+    # Remove color
+    for player in activeGame.players:
+        if player.id == ctx.author.id:
+            if player.color != None:
+                oldColor = player.color.eid
+                player.color = None
+                for gc in activeGame.colors:
+                    if gc.eid == oldColor:
+                        gc.status = False
+            break
+    # Pick color
     for color in activeGame.colors:
         if color.status is False:
             emoji = bot.get_emoji(color.eid)
@@ -80,10 +102,13 @@ async def pickColor(ctx):
 
 @bot.event
 async def on_reaction_add(reaction, user):
+    # Only allow the active user to pick a color
     if reaction.message == activeGame.colorMessage and user == activeGame.colorUser:
+        # Delete the first message to avoid confusion for other players
         await activeGame.colorMessage.delete()
+        # Send confirmation
         await reaction.message.channel.send(str(user) + " picked  " + str(reaction))
-        pickedColor = str(reaction)[8:-1]
+        pickedColor = ''.join(c for c in str(reaction) if c.isdigit())
         for c in activeGame.colors:
             if c.eid == int(pickedColor):
                 for p in activeGame.players:
