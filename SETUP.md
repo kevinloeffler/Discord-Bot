@@ -1,12 +1,12 @@
 # Quick Start
 
 ### Discord
-Download Discord:
+1. Download Discord:
 https://discord.com/download
-Become a Discord Developer:
+2. Become a Discord Developer:
 https://discord.com/login?redirect_to=%2Fdevelopers%2Fapplications
-In the Dev Portal create an Application and a Bot. You will need the API Key later.
-Setup a Test Server (Guild).
+3. In the Dev Portal create an Application and a Bot. You will need the API Key later.
+4. Setup a Test Server (Guild).
 
 ### Create Virtual Environment (venv)
 This step is not necessary but recommended. If you don't know hot set a Virtual Environment up, this article should help you:
