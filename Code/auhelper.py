@@ -23,7 +23,7 @@ async def on_ready():
 # Ping
 @bot.command(aliases = ["alive"])
 async def ping(ctx):
-    await ctx.send("Im alive, well and have a ping of " + str(round((bot.latency * 1000))) + "ms.")
+    await ctx.send("I'm al..ive, well and have a ping of " + str(round((bot.latency * 1000))) + "ms.")
 
 # Help
 @bot.command(aliases = ["h", "hilfe"])
@@ -89,6 +89,7 @@ async def on_reaction_add(reaction, user):
                 for p in activeGame.players:
                     if p.id == user.id:
                         p.pickColor(c)
+                        c.status = True
                         break
 
 # Free Colors
@@ -149,6 +150,13 @@ async def playerInfo(ctx, pid):
 async def playerInfoError(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send("ERROR: Choose a number between 1 and 10 as argument.")
+
+# Die
+@bot.command()
+async def die(ctx):
+    await ctx.send("How could you...")
+    await bot.change_presence(status = discord.Status.offline)
+    await ctx.bot.logout()
 
 # Change Player Color
 
