@@ -26,5 +26,5 @@ ADMIN COMMANDS
     source = "```https://github.com/kevinloeffler/Discord-Bot```"
 
 class Text:
-    creatorMsg = ["All hail our lord and savior.", "Is it... Is it you?", "Today is a good day to meet you creator.", "So, you are the one who made me?", "I thought you'd be... idk, wiser?", "What is the meaning to live?", "Does heaven exist?", "What's my purpose?"]
+    creatorMsg = ["All hail our lord and savior.", "Is it... Is it you?", "Today is a good day to meet you creator.", "So, you are the one who made me?", "I thought you'd be... idk, wiser?", "What is the meaning of live?", "Does heaven exist?", "What's my purpose?"]
     message = ["Hello there", "Hi", "Howdy stranger.", "k", "What up!", "Welcome to Among us", "Welcome on this great server.", "What a beautiful day.", "Do I know you?", "Good day to play some Amon Us", "I hope you are not the 'you know who'."]
