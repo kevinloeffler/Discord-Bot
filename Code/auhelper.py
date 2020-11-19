@@ -189,6 +189,15 @@ async def die(ctx):
 
 ### Fun
 
+# Hi
+@bot.command()
+async def hi(ctx):
+    if ctx.author.id == 354695565579255808:
+        await ctx.send(random.choice(Content.Text.creatorMsg))
+    else:
+        await ctx.send(random.choice(Content.Text.message))
+
+
 # Whos sus?
 
 ### Game Enviorenment
