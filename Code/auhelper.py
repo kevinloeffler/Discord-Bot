@@ -199,6 +199,16 @@ async def hi(ctx):
 
 
 # Whos sus?
+@bot.command(aliases = ["whoSus", "sus?"])
+async def sus(ctx):
+    colors = []
+    for player in activeGame.players:
+        if player.status == True and player.color != None:
+            colors.append(player.color.name)
+    if colors:
+        await ctx.send(random.choice(Content.Text.sus) + random.choice(colors))
+    else:
+        await ctx.send("No one has picked a color.")
 
 ### Game Enviorenment
 
