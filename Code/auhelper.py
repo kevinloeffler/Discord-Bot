@@ -194,6 +194,8 @@ async def die(ctx):
 async def hi(ctx):
     if ctx.author.id == 354695565579255808:
         await ctx.send(random.choice(Content.Text.creatorMsg))
+    elif ctx.author.id == 755892481060503622:
+        await ctx.send(random.choice(Content.Text.joelMsg))
     else:
         await ctx.send(random.choice(Content.Text.message))
 
