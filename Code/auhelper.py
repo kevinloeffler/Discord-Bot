@@ -115,6 +115,10 @@ async def on_reaction_add(reaction, user):
                     if p.id == user.id:
                         p.pickColor(c)
                         c.status = True
+                        # Add Role
+                        role = discord.utils.get(user.guild.roles, name=c.name)
+                        print(role)
+                        await user.add_roles(user, role)
                         break
 
 # Free Colors
